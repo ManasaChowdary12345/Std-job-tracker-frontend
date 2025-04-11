@@ -1,38 +1,257 @@
-.App {
+/* ==== BASE STYLES ==== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-image: url('https://admissions.usf.edu/hubfs/blogs/Admit-A-Bull/images/blog-post/022620-what-does-each-college-application-status-mean/what-does-each-college-application-status-mean-inline.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--dark);
+}
+
+/* ==== APP CONTAINER ==== */
+.app-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.title {
   text-align: center;
+  margin-bottom: 2rem;
+  color: rgb(16, 162, 230);
+  font-size: 2.5rem;
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; /* Start with 0 width */
+  height: 5px;
+  background:red;
+  border-radius: 3px;
+  animation: underlinePulse 2s infinite ease-in-out;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes underlinePulse {
+  0% {
+    width: 0;
+    left: 50%;
+  }
+  50% {
+    width: 100px;
+    left: 50%;
+  }
+  100% {
+    width: 0;
+    left: 50%;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* ==== FORM STYLES ==== */
+.form {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.input-row {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 10px;
+  position: relative;
+}
+
+.icon {
+  color: black;
+  font-size: 1.5rem;
+  min-width: 30px;
+}
+
+.input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.input:focus {
+  border:none;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+}
+
+.input::placeholder {
+  color: #b2b2b2;
+}
+
+.submit-button {
+  padding: 12px;
+  background-color: rgb(247, 5, 206);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  background-color: white;
+  color: rgb(247, 5, 206) ;
+  border: 2px solid  rgb(247, 5, 206);
+  box-shadow: 0 6px 12px rgba(108, 92, 231, 0.3);
+}
+
+/* ==== FILTER STYLES ==== */
+.filter {
+  margin-bottom: 2rem;
+}
+
+.filter .input {
+  width: 100%;
+  background-color: white;
+}
+
+/* ==== JOB LIST STYLES ==== */
+.job-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.job-card {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border-left: 8px solid grey;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.job-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 10px 20px  rgba(0, 0, 0, 0.1);
+}
+
+.job-title {
+  color: green;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.label {
+  
+  font-weight: bold;
+
+  color: var(--dark);
+  
+}
+
+.job-link {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.job-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* ==== BUTTON STYLES ==== */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top:2px;
+}
+
+.update-button, .delete-button, .save-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.update-button {
+  background-color: rgb(13, 172, 235);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.update-button:hover {
+  background-color: white;
+  border: 2px solid rgb(13, 172, 235);
+  color:rgb(13, 172, 235)
+  
+}
+.delete-button {
+  background-color: rgb(235, 24, 24);
+  color: white;
+}
+.delete-button:hover {
+  background-color: white;
+  border: 2px solid rgb(235, 24, 24);
+  color:rgb(235, 24, 24);
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.save-button {
+  width: 90px;
+  font-size: 18px;
+  background-color: rgb(14, 189, 14);
+  color: white;
 }
+.save-button:hover {
+  background-color: white;
+  border: 2px solid rgb(14, 189, 14);
+  color:rgb(14, 189, 14);
+  
+}
+
+/* ==== EDIT STATUS STYLES ==== */
+.edit-status {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ==== STATUS COLOR CODING ==== */
+.job-card[data-status="Applied"] { border-left-color: #3498db; }
+.job-card[data-status="Interview"] { border-left-color: #f39c12; }
+.job-card[data-status="Offer"] { border-left-color: #2ecc71; }
+.job-card[data-status="Rejected"] { border-left-color: #fc1f07; }
